@@ -160,6 +160,8 @@ type, abstract :: xml_writer_abstract
     procedure, pass(self), private :: write_geo_rect_data3_rank1_R4P    !< Write **RectilinearGrid** mesh (data 3, rank 1, R4P).
     procedure, pass(self), private :: write_geo_unst_data1_rank2_R8P    !< Write **UnstructuredGrid** mesh (data 1, rank 2, R8P).
     procedure, pass(self), private :: write_geo_unst_data1_rank2_R4P    !< Write **UnstructuredGrid** mesh (data 1, rank 2, R4P).
+    procedure, pass(self), private :: write_geo_unst_data1_rank3_R8P    !< Write **UnstructuredGrid** mesh (data 1, rank 3, R8P).
+    procedure, pass(self), private :: write_geo_unst_data1_rank3_R4P    !< Write **UnstructuredGrid** mesh (data 1, rank 3, R4P).
     procedure, pass(self), private :: write_geo_unst_data3_rank1_R8P    !< Write **UnstructuredGrid** mesh (data 3, rank 1, R8P).
     procedure, pass(self), private :: write_geo_unst_data3_rank1_R4P    !< Write **UnstructuredGrid** mesh (data 3, rank 1, R4P).
     procedure, pass(self), private :: write_piece_start_tag             !< Write `<Piece ...>` start tag.
@@ -1187,6 +1189,42 @@ contains
    call self%write_end_tag(name='Points')
    error = self%error
    endfunction write_geo_unst_data1_rank2_R4P
+
+   function write_geo_unst_data1_rank3_R8P(self, np, nc, xyz) result(error)
+    !< Write mesh with **UnstructuredGrid** topology (data 1, rank 3, R8P).
+   class(xml_writer_abstract), intent(inout) :: self       !< Writer.
+   integer(I4P),               intent(in)    :: np         !< Number of points.
+   integer(I4P),               intent(in)    :: nc         !< Number of cells.
+   real(R8P),                  intent(in)    :: xyz(1:,1:,1:) !< x, y, z coordinates [1:3,:,:].
+   integer(I4P)                              :: error      !< Error status.
+
+   if (np/=size(xyz, dim=2)*size(xyz,dim=3)) then
+      self%error = 1
+      return
+   endif
+   call self%write_start_tag(name='Points')
+   error = self%write_dataarray(data_name='Points', x=xyz)
+   call self%write_end_tag(name='Points')
+   error = self%error
+   end function
+
+   function write_geo_unst_data1_rank3_R4P(self, np, nc, xyz) result(error)
+    !< Write mesh with **UnstructuredGrid** topology (data 1, rank 3, R8P).
+   class(xml_writer_abstract), intent(inout) :: self       !< Writer.
+   integer(I4P),               intent(in)    :: np         !< Number of points.
+   integer(I4P),               intent(in)    :: nc         !< Number of cells.
+   real(R4P),                  intent(in)    :: xyz(1:,1:,1:) !< x, y, z coordinates [1:3,:,:].
+   integer(I4P)                              :: error      !< Error status.
+
+   if (np/=size(xyz, dim=2)*size(xyz,dim=3)) then
+      self%error = 1
+      return
+   endif
+   call self%write_start_tag(name='Points')
+   error = self%write_dataarray(data_name='Points', x=xyz)
+   call self%write_end_tag(name='Points')
+   error = self%error
+   end function
 
    function write_geo_unst_data3_rank1_R8P(self, np, nc, x, y, z) result(error)
    !< Write mesh with **UnstructuredGrid** topology (data 3, rank 1, R8P).
