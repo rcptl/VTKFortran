@@ -98,6 +98,8 @@ type, abstract :: xml_writer_abstract
                write_geo_rect_data3_rank1_R4P, &
                write_geo_unst_data1_rank2_R8P, &
                write_geo_unst_data1_rank2_R4P, &
+               write_geo_unst_data1_rank3_R8P, &
+               write_geo_unst_data1_rank3_R4P, &
                write_geo_unst_data3_rank1_R8P, &
                write_geo_unst_data3_rank1_R4P !< Write mesh.
     generic :: write_parallel_block_files =>     &
