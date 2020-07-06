@@ -317,7 +317,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_R8P
