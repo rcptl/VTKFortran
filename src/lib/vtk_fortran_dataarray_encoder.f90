@@ -185,7 +185,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_R16P
 
@@ -201,7 +201,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_R8P
 
@@ -232,7 +232,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_I8P
 
@@ -248,7 +248,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_I4P
 
@@ -264,7 +264,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_I2P
 
@@ -280,7 +280,7 @@ contains
     do n1=1, size(x, dim=1)-1
       code = code//str(n=x(n1, n2))//' '
     enddo
-    code = code//' '//str(n=x(size(x, dim=1), n2))
+    code = code//str(n=x(size(x, dim=1), n2))//' '
   enddo
   endfunction encode_ascii_dataarray1_rank2_I1P
 
@@ -298,7 +298,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_R16P
@@ -336,7 +336,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_R4P
@@ -355,7 +355,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_I8P
@@ -374,7 +374,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_I4P
@@ -393,7 +393,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_I2P
@@ -412,7 +412,7 @@ contains
       do n1=1, size(x, dim=1)-1
         code = code//str(n=x(n1, n2, n3))//' '
       enddo
-      code = code//' '//str(n=x(size(x, dim=1), n2, n3))
+      code = code//str(n=x(size(x, dim=1), n2, n3))//' '
     enddo
   enddo
   endfunction encode_ascii_dataarray1_rank3_I1P
