@@ -18,3 +18,6 @@
   path = src/third_party/FACE
   url = https://github.com/szaghi/FACE
   branch = master
+[submodule "src/third_party/fcore"]
+	path = src/third_party/fcore
+	url = git@gitlab.com:techsoft/fcore.git
