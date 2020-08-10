@@ -5,7 +5,7 @@ module befor64
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use fcore
+use core
 #endif
 use befor64_pack_data_m
 

@@ -6,7 +6,7 @@ use foxy_xml_tag, only : xml_tag
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use fcore
+use core
 #endif
 
 implicit none

@@ -1,7 +1,11 @@
 !< VTK file XMl writer, appended.
 module vtk_fortran_vtk_file_xml_writer_appended
 !< VTK file XMl writer, appended.
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core
+#endif
 use stringifor
 use vtk_fortran_dataarray_encoder
 use vtk_fortran_parameters

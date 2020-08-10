@@ -7,7 +7,8 @@ use face, only : colorize
 #ifdef USE_ORIGINAL_PENF
 use penf, only : I1P, I2P, I4P, I8P, R4P, R8P, R16P, str
 #else
-use fcore, only : I1P, I2P, I4P, I8P, R4P, R8P, R16P, str
+use core, only : I1P, I2P, I4P, I8P, R4P, R8P, R16P
+use core_strings, only: str
 #endif
 
 implicit none

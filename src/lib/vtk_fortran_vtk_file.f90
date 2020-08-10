@@ -2,7 +2,11 @@
 module vtk_fortran_vtk_file
 !< VTK file class.
 use befor64
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core
+#endif
 use stringifor
 use vtk_fortran_vtk_file_xml_writer_abstract
 use vtk_fortran_vtk_file_xml_writer_appended

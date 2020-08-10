@@ -4,7 +4,7 @@ module foxy_xml_tag
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use fcore
+use core
 #endif
 use stringifor
 

@@ -1,7 +1,11 @@
 !< VTK file XMl writer, ascii local.
 module vtk_fortran_vtk_file_xml_writer_ascii_local
 !< VTK file XMl writer, ascii local.
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core
+#endif
 use stringifor
 use vtk_fortran_dataarray_encoder
 use vtk_fortran_vtk_file_xml_writer_abstract

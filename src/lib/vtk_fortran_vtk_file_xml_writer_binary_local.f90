@@ -7,7 +7,11 @@ module vtk_fortran_vtk_file_xml_writer_binary_local
 !< used also on (slave) processes that have not access to filesystem: the volatile string can be easily sent to other (master)
 !< processes having access to filesytem. The volatile writer mode is designed to facilitate the use of the library in parallel
 !< envinroments wehere not all processes/threads have access to filesystem.
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core
+#endif
 use stringifor
 use vtk_fortran_dataarray_encoder
 use vtk_fortran_vtk_file_xml_writer_abstract

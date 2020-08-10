@@ -5,7 +5,7 @@ module befor64_pack_data_m
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use fcore
+use core
 #endif
 
 implicit none

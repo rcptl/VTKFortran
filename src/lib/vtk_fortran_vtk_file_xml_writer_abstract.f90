@@ -2,7 +2,11 @@
 module vtk_fortran_vtk_file_xml_writer_abstract
 !< VTK file abstract XML writer.
 use foxy
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core
+#endif
 use stringifor
 use vtk_fortran_parameters
 
@@ -29,6 +33,7 @@ type, abstract :: xml_writer_abstract
     procedure,                                 pass(self) :: free                         !< Free allocated memory.
     procedure,                                 pass(self) :: get_xml_volatile             !< Return the XML volatile string file.
     procedure,                                 pass(self) :: write_connectivity           !< Write connectivity.
+    procedure,                                 pass(self) :: write_polydata_connectivity  !< Write connectivity for polydata topology
     procedure,                                 pass(self) :: write_dataarray_location_tag !< Write dataarray location tag.
     procedure,                                 pass(self) :: write_dataarray_tag          !< Write dataarray tag.
     procedure,                                 pass(self) :: write_dataarray_tag_appended !< Write dataarray appended tag.
@@ -108,6 +113,7 @@ type, abstract :: xml_writer_abstract
     generic :: write_piece =>              &
                write_piece_start_tag,      &
                write_piece_start_tag_unst, &
+               write_piece_start_tag_polydata, &
                write_piece_end_tag !< Write Piece start/end tag.
     ! deferred methods
     procedure(write_dataarray1_rank1_R8P_interface), deferred, pass(self) :: write_dataarray1_rank1_R8P !< Data 1, rank 1, R8P.
@@ -168,6 +174,7 @@ type, abstract :: xml_writer_abstract
     procedure, pass(self), private :: write_geo_unst_data3_rank1_R4P    !< Write **UnstructuredGrid** mesh (data 3, rank 1, R4P).
     procedure, pass(self), private :: write_piece_start_tag             !< Write `<Piece ...>` start tag.
     procedure, pass(self), private :: write_piece_start_tag_unst        !< Write `<Piece ...>` start tag for unstructured topology.
+    procedure, pass(self), private :: write_piece_start_tag_polydata    !< Write `<Piece ...>` start tag for polydata topology.
     procedure, pass(self), private :: write_piece_end_tag               !< Write `</Piece>` end tag.
     procedure, pass(self), private :: write_parallel_block_files_array  !< Write block list of files (array input).
     procedure, pass(self), private :: write_parallel_block_files_string !< Write block list of files (string input).
@@ -984,6 +991,24 @@ contains
    error = self%error
    endfunction write_piece_start_tag_unst
 
+   function write_piece_start_tag_polydata (self, np, nv, nl, ns, npy) result(error)
+   !< Write `<Piece ...>` start tag for polydata topology.
+   integer(I4P)                              :: error          !< Error status.
+   class(xml_writer_abstract), intent(inout) :: self           !< Writer.
+   integer(I4P),               intent(in)    :: np             !< Number of points.
+   integer(I4P),               intent(in)    :: nv             !< Number of verts.
+   integer(I4P),               intent(in)    :: nl             !< Number of lines.
+   integer(I4P),               intent(in)    :: ns             !< Number of strips.
+   integer(I4P),               intent(in)    :: npy            !< Number of polys.
+
+   type(string)                              :: tag_attributes !< Tag attributes.
+
+   tag_attributes = 'NumberOfPoints="'//trim(str(n=np))//'" NumberOfVerts="'//trim(str(n=nv))// &
+    '" NumberOfLines="'//trim(str(n=nl))//'" NumberOfStrips="'//trim(str(n=ns))//'" NumberOfPolys="'//trim(str(n=npy))//'"'
+   call self%write_start_tag(name='Piece', attributes=tag_attributes%chars())
+   error = self%error
+   end function write_piece_start_tag_polydata
+
    function write_piece_end_tag(self) result(error)
    !< Write `</Piece>` end tag.
    class(xml_writer_abstract), intent(inout) :: self  !< Writer.
@@ -1334,6 +1359,23 @@ contains
    error = self%write_dataarray(data_name='types', x=cell_type)
    call self%write_end_tag(name='Cells')
    endfunction write_connectivity
+   !
+   !>
+   !!
+   function write_polydata_connectivity ( self, name, nc, connectivity, offset ) result(error)
+     integer(I4P)                              :: error            !< Error status.
+     class(xml_writer_abstract), intent(inout) :: self             !< Writer.
+     character(*),               intent(in)    :: name             !< Polyelement (=Tag) name.
+     integer(I4P),               intent(in)    :: nc               !< Number of cells.
+     integer(I4P),               intent(in)    :: connectivity(1:) !< Mesh connectivity.
+     integer(I4P),               intent(in)    :: offset(1:)       !< Cell offset.
+
+     call self%write_start_tag(name=name)
+     error = self%write_dataarray(data_name='connectivity', x=connectivity)
+     error = self%write_dataarray(data_name='offsets', x=offset)
+     call self%write_end_tag(name=name)
+   end function
+
 
    ! write_parallel methods
    function write_parallel_open_block(self, name) result(error)
