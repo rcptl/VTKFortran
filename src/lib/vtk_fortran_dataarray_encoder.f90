@@ -2,7 +2,13 @@
 module vtk_fortran_dataarray_encoder
 !< VTK file XMl writer, ascii local.
 use befor64
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core_global_parameters
+use core_bitmodel
+use core_strings
+#endif
 
 implicit none
 private

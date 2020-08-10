@@ -2,7 +2,11 @@
 module vtk_fortran_parameters
 !< VTK_Fortran parameters.
 use, intrinsic :: iso_fortran_env, only : output_unit, error_unit
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core_global_parameters
+#endif
 
 implicit none
 private

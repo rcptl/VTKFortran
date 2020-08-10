@@ -7,8 +7,9 @@ use face, only : colorize
 #ifdef USE_ORIGINAL_PENF
 use penf, only : I1P, I2P, I4P, I8P, R4P, R8P, R16P, str
 #else
-use core, only : I1P, I2P, I4P, I8P, R4P, R8P, R16P
-use core_strings, only: str
+use core_global_parameters
+use core_bitmodel
+use core_strings
 #endif
 
 implicit none
@@ -23,7 +24,7 @@ public :: glob
 public :: strjoin
 public :: string
 
-integer, parameter :: CK = selected_char_kind('DEFAULT') !< Default character kind.
+!integer, parameter :: CK = selected_char_kind('DEFAULT') !< Default character kind.
 
 type :: string
   !< OOP designed string class.

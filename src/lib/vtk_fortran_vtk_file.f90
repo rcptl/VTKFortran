@@ -5,7 +5,9 @@ use befor64
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use core
+use core_global_parameters
+use core_bitmodel, penf_init => bit_size_init
+use core_strings
 #endif
 use stringifor
 use vtk_fortran_vtk_file_xml_writer_abstract

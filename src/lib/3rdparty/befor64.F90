@@ -5,7 +5,8 @@ module befor64
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use core
+use core_global_parameters
+use core_bitmodel, penf_init => bit_size_init
 #endif
 use befor64_pack_data_m
 

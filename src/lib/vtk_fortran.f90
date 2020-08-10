@@ -1,7 +1,13 @@
 !< VTK_Fortran, pure Fortran (2003+) library to parse and emitt VTK files.
 module vtk_fortran
 !< VTK_Fortran, pure Fortran (2003+) library to parse and emitt VTK files.
+#ifdef USE_ORIGINAL_PENF
 use penf
+#else
+use core_global_parameters
+use core_bitmodel
+use core_strings
+#endif
 use vtk_fortran_pvtk_file, only : pvtk_file
 use vtk_fortran_vtk_file, only : vtk_file
 use vtk_fortran_vtm_file, only : vtm_file

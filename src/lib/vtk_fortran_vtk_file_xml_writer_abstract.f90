@@ -5,7 +5,9 @@ use foxy
 #ifdef USE_ORIGINAL_PENF
 use penf
 #else
-use core
+use core_global_parameters
+use core_bitmodel
+use core_strings
 #endif
 use stringifor
 use vtk_fortran_parameters
